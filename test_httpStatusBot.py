@@ -1,5 +1,8 @@
 import unittest
 import httpStatusBot
+import sys
+
+
 
 class formatUrlTests(unittest.TestCase):
 
@@ -17,6 +20,11 @@ class formatUrlTests(unittest.TestCase):
         url = httpStatusBot.formatUrl('stackoverflow.com/questions/3278418/testing-urllib2-application-http-responses-loaded-from-files')
         self.assertEqual(url[0], 'stackoverflow.com')
         self.assertEqual(url[1], '/questions/3278418/testing-urllib2-application-http-responses-loaded-from-files')
+
+    def testHTTPRequest(self):
+        url = httpStatusBot.formatUrl('http://localhost:80/')
+        self.assertEqual(url[0], 'localhost:80')
+        self.assertEqual(url[1], '/')
 
 class getStatusTests(unittest.TestCase):
     class dummyRequest:
@@ -64,15 +72,8 @@ class pingSiteTests(unittest.TestCase):
     def testException(self):
         self.assertRaises(Exception, httpStatusBot.pingSite('www.1', ''))
 
-class testcmdArgs(unittest.TestCase):
-    def setUpClass(
-    def testCmdArgs(self):
-        testcases = ['www.google.com', 'www.', 'www.1@testing.co', 'test']
-        parsed = httpStatusBot.cmdArgs(['-u', 'test'])
-        self.assertTrue(parser.url)
-            ##self.assertEqual(parsed['time'], 456)
-
 def main():
+    print sys.path
     unittest.main()
 
 if __name__ == '__main__':

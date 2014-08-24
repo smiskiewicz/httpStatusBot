@@ -46,6 +46,10 @@ def checkCurrentTime(length, timeout):
 
 ##Seporate the host from the rest of the URL
 def formatUrl(url):
+    if url.startswith('http://'):
+        url = url.replace("http://", "")
+    if url.startswith('https://'):
+        url = url.replace("https://", "")
     formatedUrl= url.split("/")
     trailingUrl = ''
     host = formatedUrl[0]
